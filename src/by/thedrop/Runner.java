@@ -11,9 +11,10 @@ import java.util.regex.Pattern;
  */
 
 public class Runner {
+    private static final String REGEX = "\\d+";
 
-    private static int first, second, count = 0;
-    private static int countPascal = 0;
+    private static int first, second, count;
+    private static int countPascal;
 
     public static void main(String[] args) {
         initializeVariables();
@@ -25,7 +26,7 @@ public class Runner {
     private static void initializeVariables() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            Pattern pattern = Pattern.compile("\\d+");
+            Pattern pattern = Pattern.compile(REGEX);
             int[] array = new int[3];
             int iterator = 0;
             while (iterator != 3) {
@@ -57,10 +58,7 @@ public class Runner {
 
 
     private static void fibonachiRow(int x0, int x1, int n) {
-        if (n <= 0) {
-            System.out.println("Count <= 0");
-            return;
-        }
+        assert n > 0;
         int[] array = new int[n];
         int summ;
         System.out.print(x0 + " " + x1 + " ");
@@ -70,16 +68,17 @@ public class Runner {
             x1 = summ;
             array[i] = summ;
         }
+        printArray(array);
+    }
+
+    private static void printArray(int[] array) {
         for (int i : array) {
             System.out.print(i + " ");
         }
     }
 
     private static void calculatePascalTriangle(int count) {
-        if (count <= 0) {
-            System.out.println("Count <= 0");
-            return;
-        }
+        assert count > 0;
         String[] arrayOfStrings = new String[count];
         for (int i = 0; i < count; i++) {
             int firstRow = 1;
